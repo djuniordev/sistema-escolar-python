@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>meu boletim</h1>
+    <table>
+        <table align="center">
+            <tr>
+                <th colspan="8">BOLETIM DE NOTAS - 
+                {% for i in range(size_table_students)%}
+                    {% if table_students['id'][i] == idres %}
+                        {{table_students['turma'][i]}}
+                    {% endif %}
+                {% endfor %}
+                </th>
+            </tr>
+            <td>
+                Aluno: 
+                {% for i in range(size_table_students) %}
+                    {% if table_students['id'][i] == idres %}
+                        {{table_students['nome'][i]}}
+                    {% endif%}
+                {% endfor %}
+            </td>
+            <td>Matricula: {{matricula}}</td>
+        </table>
+        <table border="1px" align="center">
+        <tr> 
+            <td>MATERIA</td>
+            <td>1º BIMESTRE</td>
+            <td>2º BIMESTRE</td>
+            <td>3º BIMESTRE</td>
+            <td>4º BIMESTRE</td>
+            <td>MEDIA FINAL</td>
+            <td>FALTAS</td>
+            <td>RES. PARCIAL</td>
+        </tr>
+        {% for i in range(size_table_subjects) %}
+        <tr>
+            <td>{{ table_subjects['materia'][i] }}</td>
+
+
+
+            {% if size_notas_1 > 0 %}
+                {% for j in range(size_notas_1) %}
+                    {% if notas_1['id'][j] == idres %}
+                        {% if table_subjects['materia'][i] in notas_1 %}
+                            <td>{{ notas_1[table_subjects['materia'][i]][j] }}</td>
+                        {% else %}
+                            <td>0</td>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <td>0</td>
+            {% endif %}
+
+
+                {% if size_notas_2 > 0 %}
+                    {% for j in range(size_notas_2) %}
+                            {% if notas_2['id'][j] == idres %}
+                                {% if table_subjects['materia'][i] in notas_2 %}
+                                    <td>{{ notas_2[table_subjects['materia'][i]][j] }}</td>
+                                {% else %}
+                                    <td>0</td>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                {% else %}
+                    <td>0</td>
+                {% endif %}
+        
+
+
+                {% if size_notas_3 > 0 %}
+                    {% for j in range(size_notas_3) %}
+                        {% if notas_3['id'][j] == idres %}
+                            {% if table_subjects['materia'][i] in notas_3 %}
+                                <td>{{ notas_3[table_subjects['materia'][i]][j] }}</td>
+                            {% else %}
+                                <td>0</td>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <td>0</td>
+                {% endif %}
+
+
+
+                {% if size_notas_4 > 0 %}
+                    {% for j in range(size_notas_4) %}
+                            {% if notas_4['id'][j] == idres %}
+                                {% if table_subjects['materia'][i] in notas_4 %}
+                                    <td>{{ notas_4[table_subjects['materia'][i]][j] }}</td>
+                                {% else %}
+                                <td>0</td>
+                                {% endif %}
+                            {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <td>0</td>
+                {% endif %}
+
+                <td>{{media_final[i]}}</td>
+
+            {% if i == 0 %}
+                <td align="center" rowspan="{{ size_table_subjects }}">{{ n_faltas }}</td>
+            {% endif %}
+
+            {% if media_final[i] >= 7 %}
+                <td>APROVADO</td>
+            {% else %}
+                <td>REPROVADO</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+        </table>  
+</table>    
+<br>
+<br>
+    <a href="/voltar_aluno">Voltar para a página inicial</a>
+</body>
+</html>

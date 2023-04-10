@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Suas Turmas:</h2>
+    <ul type="square">
+    {% for i in range(size_table_classes) %}
+        {% if table_classes['id'][i] == idres %}
+                <form action="/chamada" method="post">
+                    <button>{{table_classes['turma'][i]}}</button><br>
+                    <input type="hidden" name="turma" value="{{table_classes['turma'][i]}}">
+                </form>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <br>
+    <br>
+    <a href="/voltar_professor">Voltar para a página inicial</a>
+</body>
+
+</html>

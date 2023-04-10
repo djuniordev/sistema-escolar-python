@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/lancar_nota" method="post">
+        <label for="turma">Turma:</label>
+        <select id="turma" name="turma">
+            <option value="" selected>Selecione uma opção</option>
+            {% for i in range(size_table_classes) %}
+                {% if table_classes['id'][i] == idres %}
+                    <option value="{{table_classes['turma'][i]}}">{{table_classes['turma'][i]}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <label for="materia">Matéria:</label>
+        <select id="materia" name="materia">
+            <option value="" selected>Selecione uma opção</option>
+            {% for i in range(size_table_subjects) %}
+                {% if table_subjects['id'][i] == idres %}
+                    <option value="{{table_subjects['materia'][i]}}">{{table_subjects['materia'][i]}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <label for="bimestre">Bimestre:</label>
+        <select id="bimestre" name="bimestre">
+            <option value="" selected>Selecione uma opção</option>
+            <option value="1º Bimestre">1º Bimestre</option>
+            <option value="2º Bimestre">2º Bimestre</option>
+            <option value="3º Bimestre">3º Bimestre</option>
+            <option value="4º Bimestre">4º Bimestre</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit" value="continuar">
+      </form>
+      <br>
+      <br>
+      <a href="/voltar_professor">Voltar para a página inicial</a>
+</body>
+
+</html>
